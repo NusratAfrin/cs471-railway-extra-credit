@@ -55,6 +55,8 @@ public class HerokuApplication {
 
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
+
+    System.out.println("Nusrat Afrin");
     try (Connection connection = dataSource.getConnection()) {
       Statement stmt = connection.createStatement();
       stmt.executeUpdate("CREATE TABLE IF NOT EXISTS table_timestamp_and_random_string (tick timestamp, random_string varchar(30))");
@@ -70,9 +72,13 @@ public class HerokuApplication {
 
       model.put("records", output);
       return "db";
+      
     } catch (Exception e) {
       model.put("message", e.getMessage());
       return "error";
+
+      
+
     }
   }
 
